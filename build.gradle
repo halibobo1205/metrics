@@ -1,0 +1,51 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+apply plugin: "java"
+apply plugin: "jacoco"
+apply plugin: "maven"
+apply plugin: "maven-publish"
+
+group 'com.halibobo'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+targetCompatibility = JavaVersion.VERSION_1_8
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+dependencies {
+
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.25'
+    compile "org.slf4j:jcl-over-slf4j:1.7.25"
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.9'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    // https://mvnrepository.com/artifact/io.prometheus/simpleclient
+    compile group: 'io.prometheus', name: 'simpleclient', version: '0.14.1'
+    // https://mvnrepository.com/artifact/io.prometheus/simpleclient_httpserver
+    compile group: 'io.prometheus', name: 'simpleclient_httpserver', version: '0.14.1'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'com.google.guava', name: 'guava', version: '24.1-jre'
+
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
